@@ -1,0 +1,280 @@
+/Users/imayes/Documents/My Documents/Personal/Training/Udacity/Git-and-Github/version-control/reflections
+
+imayes-mbp:~ imayes$ diff -u game_old.js game_new.js 
+--- game_old.js	2019-06-11 20:02:00.000000000 -0700
++++ game_new.js	2019-06-11 20:02:32.000000000 -0700
+@@ -4,9 +4,9 @@
+ //
+ 
+ KEY_CODES = {
++  13: 'enter',
+   32: 'space',
+   37: 'left',
+-  38: 'up',
+   39: 'right',
+   40: 'down',
+   70: 'f',
+@@ -392,7 +392,7 @@
+       this.vel.rot = 0;
+     }
+ 
+-    if (KEY_STATUS.up) {
++    if (KEY_STATUS.spacr) {
+       var rad = ((this.rot-90) * Math.PI)/180;
+       this.acc.x = 0.5 * Math.cos(rad);
+       this.acc.y = 0.5 * Math.sin(rad);
+@@ -406,7 +406,7 @@
+     if (this.delayBeforeBullet > 0) {
+       this.delayBeforeBullet -= delta;
+     }
+-    if (KEY_STATUS.space) {
++    if (KEY_STATUS.enter) {
+       if (this.delayBeforeBullet <= 0) {
+         this.delayBeforeBullet = 10;
+         for (var i = 0; i < this.bullets.length; i++) {
+@@ -919,7 +919,7 @@
+     waiting: function () {
+       Text.renderText(ipad ? 'Touch Sreen to Start' : 'Press Space to Start', 36, Game.canvasWidth/2 - 270, Game.canvasHeight/2);
+       if (KEY_STATUS.space || window.gameStart) {
+-        KEY_STATUS.space = false; // hack so we don't shoot right away
++        KEY_STATUS.space = false; // hack so we don't move right away
+         window.gameStart = false;
+         this.state = 'start';
+       }
+imayes-mbp:~ imayes$ 
+
+imayes-mbp:reflections imayes$ git --version
+git version 2.21.0
+
+imayes-mbp:~ imayes$ git diff <file ID 1> <file ID 2>
+
+imayes-mbp:~ imayes$ git log --stat
+
+imayes-mbp:reflections imayes$ git config --global color.ui auto
+
+imayes-mbp:reflections imayes$ git clone https://github.com/udacity/asteroids.git
+Cloning into 'asteroids'...
+remote: Enumerating objects: 209, done.
+remote: Total 209 (delta 0), reused 0 (delta 0), pack-reused 209
+Receiving objects: 100% (209/209), 191.54 KiB | 97.00 KiB/s, done.
+Resolving deltas: 100% (127/127), done.
+
+
+imayes-mbp:.git imayes$ git diff f19cb1b80fe27e938e4d72770ca0a42f25e99ecc b0678b161fcf74467ed3a63110557e3d6229cfa6
+diff --git a/game.js b/game.js
+index 20be658..553849b 100644
+--- a/game.js
++++ b/game.js
+@@ -4,9 +4,9 @@
+ //
+ 
+ KEY_CODES = {
+-  13: 'enter',
+   32: 'space',
+   37: 'left',
++  38: 'up',
+   39: 'right',
+   40: 'down',
+   70: 'f',
+@@ -392,7 +392,7 @@ Ship = function () {
+       this.vel.rot = 0;
+     }
+ 
+-    if (KEY_STATUS.space) {
++    if (KEY_STATUS.up) {
+       var rad = ((this.rot-90) * Math.PI)/180;
+       this.acc.x = 0.5 * Math.cos(rad);
+       this.acc.y = 0.5 * Math.sin(rad);
+@@ -406,7 +406,7 @@ Ship = function () {
+     if (this.delayBeforeBullet > 0) {
+       this.delayBeforeBullet -= delta;
+     }
+-    if (KEY_STATUS.enter) {
++    if (KEY_STATUS.space) {
+       if (this.delayBeforeBullet <= 0) {
+         this.delayBeforeBullet = 10;
+         for (var i = 0; i < this.bullets.length; i++) {
+@@ -919,7 +919,7 @@ Game = {
+     waiting: function () {
+       Text.renderText(ipad ? 'Touch Sreen to Start' : 'Press Space to Start', 36, Game.canvasWidth/2 - 270, Game.canvasHeight/2);
+       if (KEY_STATUS.space || window.gameStart) {
+-        KEY_STATUS.space = false; // hack so we don't move right away
++        KEY_STATUS.space = false; // hack so we don't shoot right away
+         window.gameStart = false;
+         this.state = 'start';
+
+
+imayes-mbp:.git imayes$ git log
+commit 3884eab839af1e82c44267484cf2945a766081f3 (HEAD -> master, origin/master, origin/HEAD)
+Author: cbuckey <caroline@udacity.com>
+Date:   Fri Apr 29 12:33:05 2011 -0700
+
+    Add color
+
+commit 3e42136a76cf78c6c421cd720427bf6337c2d623
+Author: Doug McInnes <doug@dougmcinnes.com>
+Date:   Tue Mar 15 22:34:49 2011 -0700
+
+    now using requestAnimationFrame
+    
+    see this for more info:
+    http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+
+commit 4035769377cce96a88d5c1167079e12f30492391
+Author: Doug McInnes <doug@dougmcinnes.com>
+Date:   Wed Jun 9 21:04:32 2010 -0700
+
+    frame interval was set wrong after game was paused
+
+commit 25ede836903881848fea811df5b687b59d962da3
+Author: Doug McInnes <doug@dougmcinnes.com>
+Date:   Wed May 26 23:52:00 2010 -0700
+
+    a couple missing ends with the ipad version
+
+commit df035382c41b4d0cda86a1aa30b53f15bef05b53
+Author: Doug McInnes <doug@dougmcinnes.com>
+Date:   Tue May 25 22:18:23 2010 -0700
+
+    I can't spell 'screen' apparently :)
+
+commit b0678b161fcf74467ed3a63110557e3d6229cfa6
+Author: cbuckey <caroline@udacity.com>
+Date:   Mon May 24 04:15:21 2010 -0700
+
+    Revert controls
+
+commit f19cb1b80fe27e938e4d72770ca0a42f25e99ecc
+Author: cbuckey <caroline@udacity.com>
+Date:   Mon May 24 04:03:05 2010 -0700
+
+    Fix typo in space
+
+commit 75928a98e18479b22b18888a33d36379f17b43c1
+Author: cbuckey <caroline@udacity.com>
+Date:   Mon May 24 03:54:42 2010 -0700
+
+
+
+imayes-mbp:.git imayes$ git log --stat
+commit 3884eab839af1e82c44267484cf2945a766081f3 (HEAD -> master, origin/master, origin/HEAD)
+Author: cbuckey <caroline@udacity.com>
+Date:   Fri Apr 29 12:33:05 2011 -0700
+
+    Add color
+
+ game.js | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+commit 3e42136a76cf78c6c421cd720427bf6337c2d623
+Author: Doug McInnes <doug@dougmcinnes.com>
+Date:   Tue Mar 15 22:34:49 2011 -0700
+
+    now using requestAnimationFrame
+    
+    see this for more info:
+    http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+
+ game.js | 37 +++++++++++++++++++++++++++++--------
+ 1 file changed, 29 insertions(+), 8 deletions(-)
+
+commit 4035769377cce96a88d5c1167079e12f30492391
+Author: Doug McInnes <doug@dougmcinnes.com>
+Date:   Wed Jun 9 21:04:32 2010 -0700
+
+    frame interval was set wrong after game was paused
+
+ game.js | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+commit 25ede836903881848fea811df5b687b59d962da3
+Author: Doug McInnes <doug@dougmcinnes.com>
+Date:   Wed May 26 23:52:00 2010 -0700
+
+    a couple missing ends with the ipad version
+
+ game.js    | 3 +--
+ index.html | 1 -
+ ipad.js    | 4 ++--
+ 3 files changed, 3 insertions(+), 5 deletions(-)
+
+commit df035382c41b4d0cda86a1aa30b53f15bef05b53
+Author: Doug McInnes <doug@dougmcinnes.com>
+Date:   Tue May 25 22:18:23 2010 -0700
+
+    I can't spell 'screen' apparently :)
+
+ game.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+
+imayes-mbp:asteroids imayes$ git checkout b0678b161fcf74467ed3a63110557e3d6229cfa6
+Note: checking out 'b0678b161fcf74467ed3a63110557e3d6229cfa6'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <new-branch-name>
+
+HEAD is now at b0678b1 Revert controls
+
+
+imayes-mbp:asteroids imayes$ git checkout df035382c41b4d0cda86a1aa30b53f15bef05b53
+Previous HEAD position was b0678b1 Revert controls
+HEAD is now at df03538 I can't spell 'screen' apparently :)
+
+
+imayes-mbp:asteroids imayes$ git checkout 25ede836903881848fea811df5b687b59d962da3
+Previous HEAD position was df03538 I can't spell 'screen' apparently :)
+HEAD is now at 25ede83 a couple missing ends with the ipad version
+
+
+imayes-mbp:asteroids imayes$ git checkout 3884eab839af1e82c44267484cf2945a766081f3
+Previous HEAD position was 25ede83 a couple missing ends with the ipad version
+HEAD is now at 3884eab Add color
+
+
+
+
+How did viewing a diff between two versions of a file help you see the bug that
+was introduced?
+
+    The output from the diff command displays only changes from the old file to the new file, making them (and typos) easier to spot
+
+How could having easy access to the entire history of a file make you a more
+efficient programmer in the long term?
+
+    Faster identification of file changes
+
+What do you think are the pros and cons of manually choosing when to create a
+commit, like you do in Git, vs having versions automatically saved, like Google
+docs does?
+
+    PROS: More granular control over the process when performing manual save
+    CONS: Easier to forget saving manual changes, resulting in potential loss of changes (ie. application / system-level crash, etc...)
+          
+
+Why do you think some version control systems, like Git, allow saving multiple
+files in one commit, while others, like Google Docs, treat each file separately?
+
+    GIT allows separate files w/ dependencies on one another (ie. common references to a function, etc...) to be changed in a single commit
+
+How can you use the commands git log and git diff to view the history of files?
+
+    GIT LOG: Displays all commit IDs for a given file, along with author, timestamp, and brief annotation describing nature of change(s)
+    GIT DIFF: Displays specific code that was removed and added between 2 different versions of the same file 
+
+How might using version control make you more confident to make changes that
+could break something?
+
+    git checkout enables one to revert back to previous versions of the same file (ie. prior to the occurrence of the most recent bug(s)
+
+Now that you have your workspace set up, what do you want to try using Git for?
+
+    I'm signed-up for the Cloud Devops Nanodegree Program and need to understand basic GIT / GITHUB concepts to navigate and commit changes to files
+
+
