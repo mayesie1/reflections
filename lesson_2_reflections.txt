@@ -1,0 +1,117 @@
+Commit message style guide: http://udacity.github.io/git-styleguide/
+
+
+imayes ~ $ cd Documents/My\ Documents/Personal/Training/Udacity/Git-and-Github/version-control/reflections
+
+
+imayes reflections $ git init
+Initialized empty Git repository in /Users/imayes/Documents/My Documents/Personal/Training/Udacity/Git-and-Github/version-control/reflections/.git/
+imayes (master #) reflections $ ls -la
+total 40
+drwxr-xr-x   5 imayes  staff   160 Jun 12 23:58 .
+drwxr-xr-x   9 imayes  staff   288 Jun 12 23:57 ..
+-rw-r--r--@  1 imayes  staff  6148 Jun 12 23:57 .DS_Store
+drwxr-xr-x  10 imayes  staff   320 Jun 12 23:58 .git
+-rw-r--r--@  1 imayes  staff  9357 Jun 12 22:40 lesson_1_reflections.txt
+
+
+imayes (master #) reflections $ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	lesson_1_reflections.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+imayes (master #) reflections $ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	lesson_1_reflections.txt
+	lesson_2_reflections.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+imayes (master #) reflections $ git add lesson_1_reflections.txt
+imayes (master +) reflections $ git add lesson_2_reflections.txt
+
+
+imayes (master +) reflections $ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   lesson_1_reflections.txt
+	new file:   lesson_2_reflections.txt
+
+
+imayes (master +) reflections $ git reset lesson_2_reflections.txt
+
+
+imayes (master +) reflections $ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   lesson_1_reflections.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	lesson_2_reflections.txt
+
+
+imayes (master *+) reflections $ git config --global user.name "imayes"
+
+imayes (master *+) reflections $ git config --global user.email "imayes@juniper.net"
+
+
+git commit -m "Commit message"
+
+
+
+
+
+What happens when you initialize a repository? Why do you need to do it?
+- .git directory is created where the repository was initialized. This is needed to use git to execute future commits related to applicable file changes
+
+
+How is the staging area different from the working directory and the repository?
+What value do you think it offers?
+- The staging area allows for potential commits to the repository to get backed-out or changed
+
+
+How can you use the staging area to make sure you have one commit per logical
+change?
+
+What are some situations when branches would be helpful in keeping your history
+organized? How would branches help?
+
+How do the diagrams help you visualize the branch structure?
+
+What is the result of merging two branches together? Why do we represent it in
+the diagram the way we do?
+
+What are the pros and cons of Git's automatic merging vs. always doing merges
+manually?
+
+
+
+
+
